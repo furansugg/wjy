@@ -497,40 +497,34 @@ input:focus-visible {
 
 .char-header {
   width: 100%;
-  display: flex;
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) 44px;
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid var(--border-subtle);
+  gap: 16px;
+  padding: 8px 0 12px;
 }
 
 .char-identity {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 14px;
+  gap: 10px;
+  text-align: center;
 }
 
 .char-romaji-display {
   font-family: var(--font-serif-jp);
-  font-size: 40px;
+  font-size: 48px;
   font-weight: 600;
   line-height: 1;
   letter-spacing: -0.02em;
   color: var(--ink-primary);
 }
 
-.char-meta-stack {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.char-meta-badges {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  flex-wrap: wrap;
+.char-category {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--ink-secondary);
 }
 
 .meta-badge {
@@ -554,24 +548,16 @@ input:focus-visible {
   color: var(--ink-secondary);
 }
 
-.char-nav-group {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-
 .nav-arrow-btn {
+  width: 44px;
   height: 44px;
-  padding: 0 11px;
   border-radius: var(--radius-md);
   border: 1px solid var(--border-subtle);
   background-color: var(--bg-paper);
   color: var(--ink-secondary);
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  font-size: 13px;
-  font-weight: 500;
+  justify-content: center;
   transition: background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
 }
 
@@ -590,9 +576,30 @@ input:focus-visible {
 .stroke-steps {
   width: 100%;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
-  gap: 10px;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.stroke-progress,
+.char-score {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.char-score {
+  align-items: flex-end;
+  margin-left: auto;
+}
+
+.char-mastered {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--accent-match);
 }
 
 .stroke-dots {
@@ -1290,37 +1297,8 @@ input:focus-visible {
     font-size: 16px;
   }
 
-  .char-header {
-    align-items: flex-start;
-    gap: 8px;
-  }
-
-  .char-identity {
-    gap: 10px;
-    min-width: 0;
-  }
-
-  .char-meta-stack {
-    min-width: 0;
-  }
-
-  .char-nav-group {
-    gap: 4px;
-  }
-
-  .nav-arrow-btn {
-    width: 44px;
-    padding: 0;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-
   .char-romaji-display {
-    font-size: 34px;
-  }
-
-  .nav-arrow-text {
-    display: none;
+    font-size: 42px;
   }
 
   .quiz-card {

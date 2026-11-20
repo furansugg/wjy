@@ -128,70 +128,72 @@ export function PracticeWorkspace({
   return (
     <section className="studio-column" aria-label="Area latihan menulis">
       <div className="char-header">
+        <button
+          type="button"
+          className="nav-arrow-btn"
+          onClick={onPrev}
+          disabled={!hasPrev}
+          aria-label="Huruf sebelumnya"
+          title="Huruf sebelumnya (←)"
+        >
+          <ArrowLeft size={18} strokeWidth={1.8} />
+        </button>
+
         <div className="char-identity">
           <div className="char-romaji-display">{character.romaji}</div>
-          <div className="char-meta-stack">
-            <div className="char-meta-badges">
-              <span className="meta-badge">{getScriptLabel(character.script)}</span>
-              <span className="meta-badge">{getSubgroupLabel(character.subgroup)}</span>
-              {isMastered && <span className="meta-badge meta-badge-hanko">済 Dikuasai</span>}
-            </div>
-            <span className="stroke-counter-text">
-              {session.isComplete
-                ? `Selesai — ${character.strokeCount} goresan tuntas`
-                : `Goresan ${Math.min(session.acceptedCount + 1, character.strokeCount)} dari ${character.strokeCount}`}
-            </span>
-          </div>
+          <span className="char-category">
+            {getScriptLabel(character.script)} · {getSubgroupLabel(character.subgroup)}
+          </span>
         </div>
 
-        <div className="char-nav-group">
-          <button
-            type="button"
-            className="nav-arrow-btn"
-            onClick={onPrev}
-            disabled={!hasPrev}
-            aria-label="Huruf sebelumnya"
-            title="Huruf sebelumnya (←)"
-          >
-            <ArrowLeft size={15} strokeWidth={1.8} />
-            <span className="nav-arrow-text">Sebelum</span>
-          </button>
-          <button
-            type="button"
-            className="nav-arrow-btn"
-            onClick={onNext}
-            disabled={!hasNext}
-            aria-label="Huruf berikutnya"
-            title="Huruf berikutnya (→)"
-          >
-            <span className="nav-arrow-text">Lanjut</span>
-            <ArrowRight size={15} strokeWidth={1.8} />
-          </button>
-        </div>
+        <button
+          type="button"
+          className="nav-arrow-btn"
+          onClick={onNext}
+          disabled={!hasNext}
+          aria-label="Huruf berikutnya"
+          title="Huruf berikutnya (→)"
+        >
+          <ArrowRight size={18} strokeWidth={1.8} />
+        </button>
       </div>
 
       {/* Stroke step progress dots */}
       <div className="stroke-steps">
-        <div className="stroke-dots" aria-label="Progres goresan">
-          {character.strokes.map((stroke, idx) => {
-            const done = idx < session.acceptedCount;
-            const current = idx === session.acceptedCount && !session.isComplete;
-            return (
-              <span
-                key={stroke.strokeNumber}
-                className={`stroke-dot ${done ? 'is-done' : current ? 'is-current' : ''}`}
-                title={`Goresan ${stroke.strokeNumber}`}
-              >
-                {done ? <Check size={12} strokeWidth={2.5} /> : stroke.strokeNumber}
-              </span>
-            );
-          })}
+        <div className="stroke-progress">
+          <div className="stroke-dots" aria-label="Progres goresan">
+            {character.strokes.map((stroke, idx) => {
+              const done = idx < session.acceptedCount;
+              const current = idx === session.acceptedCount && !session.isComplete;
+              return (
+                <span
+                  key={stroke.strokeNumber}
+                  className={`stroke-dot ${done ? 'is-done' : current ? 'is-current' : ''}`}
+                  title={`Goresan ${stroke.strokeNumber}`}
+                >
+                  {done ? <Check size={12} strokeWidth={2.5} /> : stroke.strokeNumber}
+                </span>
+              );
+            })}
+          </div>
+          <span className="stroke-counter-text">
+            {session.isComplete
+              ? `Selesai — ${character.strokeCount} goresan tuntas`
+              : `Goresan ${Math.min(session.acceptedCount + 1, character.strokeCount)} dari ${character.strokeCount}`}
+          </span>
         </div>
 
-        {characterProgress && characterProgress.bestScore > 0 && (
-          <span className="best-score-label">
-            Skor terbaik: <strong>{characterProgress.bestScore}%</strong>
-          </span>
+        {characterProgress && (isMastered || characterProgress.bestScore > 0) && (
+          <div className="char-score">
+            {isMastered && (
+              <span className="char-mastered"><Check size={13} /> Dikuasai</span>
+            )}
+            {characterProgress.bestScore > 0 && (
+              <span className="best-score-label">
+                Skor terbaik: <strong>{characterProgress.bestScore}%</strong>
+              </span>
+            )}
+          </div>
         )}
       </div>
 
