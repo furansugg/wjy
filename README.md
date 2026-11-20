@@ -1,4 +1,4 @@
-# Kana・書
+# WJY
 
 Website minimalis untuk belajar menulis **142 huruf Jepang** — mencakup **46 huruf dasar (Gojūon)** serta **25 huruf Dakuten & Handakuten** untuk **Hiragana** dan **Katakana**.
 

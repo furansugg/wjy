@@ -27,11 +27,11 @@ export function Header({
   return (
     <header className="app-header">
       <div className="header-left">
-        <div className="brand" aria-label="Kana Sho">
+        <div className="brand" aria-label="WJY">
           <span className="brand-seal" aria-hidden="true">
             書
           </span>
-          <span className="brand-name">Kana</span>
+          <span className="brand-name">WJY</span>
         </div>
 
         {mode === 'practice' && (

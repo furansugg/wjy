@@ -124,7 +124,7 @@ export function App() {
       </main>
 
       <footer className="app-footer">
-        <span>Kana・書 — Latihan Menulis Hiragana &amp; Katakana</span>
+        <span>WJY — Latihan Menulis Hiragana &amp; Katakana</span>
         <span className="footer-sep" aria-hidden="true">
           ·
         </span>
